@@ -676,23 +676,14 @@ nav{
 
 /* --- Studio fotky (grid) --- */
 #studio .gallery {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-
-    /* schování scrollbaru */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
-#studio .gallery::-webkit-scrollbar {
-    display: none;
-}
 #studio .gallery img {
-    flex: 0 0 auto;
-    height: 260px;
-    width: auto;
+    width: 100%;
+    height: auto;
     border-radius: 30px;
     object-fit: cover;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
