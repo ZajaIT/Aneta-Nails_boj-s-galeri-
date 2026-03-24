@@ -1219,10 +1219,13 @@ nav{
   }
 
   #studio .gallery img {
-    flex: 0 0 auto;    
-    width: 260px;      
+    flex: 0 0 auto;
+    width: 260px;
     height: auto;
     object-fit: cover;
+
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
   #studio .gallery::-webkit-scrollbar {
