@@ -1219,10 +1219,11 @@ nav{
   }
 
   #studio .gallery img {
-    flex: 0 0 auto;     /* ← důležité */
-    width: 260px;       /* ← pevná velikost */
+    flex: 0 0 auto;    
+    width: 260px;      
     height: auto;
     object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
 }
 
   #studio .gallery::-webkit-scrollbar {
