@@ -1218,12 +1218,12 @@ nav{
       padding: 10px 0;
   }
 
-#studio .gallery img {
-    flex: 0 0 auto;
-    width: 320px;
-    height: 320px;          /* ← přidat */
-    object-fit: cover;      /* ← KLÍČOVÉ */
-}
+  #studio .gallery img {
+      flex: 0 0 320px;   /* ← místo width */
+      width: 100%;       /* ← DŮLEŽITÉ */
+      height: auto;      /* ← vrátit */
+      object-fit: cover;
+  }
 
   #studio .gallery::-webkit-scrollbar {
       display: none;
