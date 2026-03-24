@@ -1208,6 +1208,33 @@ nav{
         right: 22px;
     }
 }
+  @media (min-width: 769px){
+
+  #studio .gallery {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px 0;
+  }
+
+  #studio .gallery img {
+      flex: 0 0 auto;
+      width: 250px;
+      height: 250px;
+      border-radius: 30px;
+      object-fit: cover;
+  }
+
+  /* skrytí scrollbaru */
+  #studio .gallery::-webkit-scrollbar {
+      display: none;
+  }
+  #studio .gallery {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+}
        
 </style>
 </head>
