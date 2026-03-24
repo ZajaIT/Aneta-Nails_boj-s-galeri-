@@ -1,0 +1,2780 @@
+
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nail Studio Anet</title>
+
+<link rel="icon" type="image/png" href="favicon.png?v=1">
+
+<!-- Sociální náhled – logo místo galerie -->
+<meta property="og:image" content="https://zajait.github.io/Aneta-Nails/logo.png">
+<meta name="twitter:image" content="https://zajait.github.io/Aneta-Nails/logo.png">
+  
+<!-- Preload fontů -->
+<!-- Google Fonts s fallback fonty a display=swap -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preload" href="banner1.png" as="image" fetchpriority="high">
+
+<style>
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif; 
+}
+  h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif; 
+}
+    
+header.banner {
+    min-height: 89vh;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+header.banner.banner-ready {
+    animation: fadeUp 1.2s ease-out forwards;
+}
+    
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* COLORS */
+:root{
+    --pink:#f3c1cc;
+    --rose:#d48b9c;
+    --cream:#fff7f9;
+    --dark:#5a2f3a;
+}
+
+/* BODY */
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--cream);
+    color:var(--dark);
+    line-height:1.7;
+}
+
+/* DECOR SHAPES */
+.shape{
+    position:absolute;
+    border-radius:50%;
+    background:linear-gradient(135deg,#f7cbd5,#fdebee);
+    opacity:0.6;
+    z-index:-1;
+}
+.shape.one{
+    width:300px;
+    height:300px;
+    top:-80px;
+    left:-80px;
+}
+.shape.two{
+    width:220px;
+    height:220px;
+    top:400px;
+    right:-80px;
+}
+.shape.three{
+    width:260px;
+    height:260px;
+    bottom:200px;
+    left:-100px;
+}
+
+/* NAV */
+
+nav{
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    z-index:100;
+}
+nav ul{
+    display:flex;
+    justify-content:center;
+    list-style:none;
+    padding-left:0;
+    margin-left:0;
+}
+nav li{
+    margin:0 8px;
+}
+nav a{
+    position:relative;
+    display:block;
+    padding:20px 18px;
+    text-decoration:none;
+    color:var(--dark);
+    font-weight:600;
+    border-radius:30px;
+    transition:color 0.3s ease;
+    z-index:1;
+}
+
+/* Bubble efekt */
+nav a::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.7);
+    width:100%;
+    height:100%;
+    background:rgba(212,139,156,0.15);
+    backdrop-filter:blur(6px);
+    border-radius:30px;
+    opacity:0;
+    transition:0.1s ease;
+    z-index:-1;
+}
+
+/* Hover */
+nav a:hover::before{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+nav a:hover{
+    color:#7a3f4d;
+}
+
+/* HERO */
+
+/* BANNER */
+
+header.banner{
+    width:100%;
+    height:89vh;
+    min-height:500px;
+    scroll-margin-top: 0;
+    background:url("banner1.png") center 35% / cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.hero-box{
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(12px);
+    padding:70px 60px;
+    border-radius:60px;
+    max-width:700px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:60px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+header span{
+    color:var(--rose);
+}
+header p{
+    margin:25px 0 35px;
+    font-size:18px;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    padding:14px 36px;
+    border-radius:40px;
+    background:linear-gradient(135deg,#d48b9c,#f3c1cc);
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    letter-spacing:1px;
+    transition:0.3s;
+}
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* SECTIONS */
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+    position:relative;
+    scroll-margin-top: 40px;
+}
+  #services{
+    background:linear-gradient(135deg,#fdebee,#fff7f9);
+    max-width:100%;
+    margin:0;
+}
+.services-list{
+    max-width:760px;
+    margin:0 auto;
+}
+.service-item:not(:last-child){
+    margin-bottom:60px;
+}
+.service-item h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    margin-bottom:10px;
+}
+.service-item h3::after{
+    content:"";
+    display:block;
+    width:120px;
+    height:2px;
+    background:linear-gradient(90deg,#d48b9c,#f3c1cc);
+    margin-top:10px;
+    border-radius:2px;
+}
+.service-item p{
+    margin-top:18px;
+    font-size:16px;
+    line-height:1.7;
+    opacity:0.9;
+}
+#gallery{
+    padding-left:0;
+    padding-right:0;
+}
+section h2{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:46px;
+    margin-bottom:50px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    color:#7a3f4d;
+}
+section h2::after{
+    content:"";
+    display:block;
+    width:60px;
+    height:2px;
+    background:linear-gradient(90deg,#d48b9c,#f3c1cc);
+    margin:18px auto 0;
+    border-radius:2px;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+.gallery img{
+    width:100%;
+    border-radius:30px;
+    object-fit:cover;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+.gallery img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* plynulý efekt */
+}
+.gallery img:hover {
+    transform: scale(1.05); /* jemné zvětšení */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* lehce silnější stín */
+}
+
+/* ABOUT */
+.about{
+    max-width:750px;
+    margin:auto;
+    text-align:center;
+    font-size:18px;
+}
+
+  /* --- Ikonky v sekci O mně --- */
+.about-icons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:45px;
+    max-width:1100px;
+    margin:70px auto 0;
+}
+.about-icon{
+    background:white;
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.07);
+    height:160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.about-icon img{
+    width:200px;
+    height:auto;
+}
+.about-icon-item h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    margin-top:18px;
+    text-align:center;
+}
+.about-icon-item p{
+    font-size:15px;
+    line-height:1.6;
+    text-align:center;
+    margin-top:6px;
+    opacity:0.85;
+}
+
+/* --- O MĚ: fotka vlevo, text vpravo --- */
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* mezera mezi fotkou a textem */
+    max-width: 900px;
+    margin: 20px auto 0; /* odsazení od nadpisu */
+    flex-wrap: wrap; /* na mobil sloupce spadnou pod sebe */
+}
+.about-photo {
+    flex: 1 1 300px; /* minimální šířka fotky */
+}
+.about-photo img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+.about-text {
+    flex: 2 1 400px; /* text zabere zbytek místa */
+    font-size: 18px;
+    line-height: 1.7;
+}
+  .about-note {
+    max-width: 700px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+.about-note p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+  @media (min-width: 769px) {
+    .about-wrapper {
+        margin-left: 140px;
+        margin-right: auto;
+    }
+}
+@media (min-width: 769px) {
+    .about-text {
+        max-width: 520px;
+    }
+}
+@media (min-width: 769px) {
+    .about-photo img {
+        margin-left: 80px;
+    }
+}
+@media (max-width: 768px) {
+  .about-wrapper {
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;       
+    gap: 20px;               
+    align-items: center;
+    text-align: center;
+  }
+  .about-text,
+  .about-photo {
+    flex: 0 0 auto;          
+    width: 100%;             
+  }
+  .about-text p {
+    margin: 0;               
+  }
+  .about-photo img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+  
+/* CONTACT */
+.contact{
+    background:white;
+    border-radius:25px;
+    padding:30px 30px;       
+    text-align:left;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    max-width:900px;         /* šířka boxu */
+    margin:auto;
+}
+  .contact-grid{
+    display:flex;
+    gap:70px;
+}
+.contact-left{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-left:43px;
+    margin-top:20px;
+}
+.contact-right{
+    flex:1.2;
+    font-size:13.5px;
+    line-height:1.6;
+    border-left:1px solid rgba(212,139,156,0.3);
+    padding-left:40px;
+    padding-top:5px;
+}
+.contact-right h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+    text-align:center;
+    margin-bottom:20px;
+    position:relative;
+}
+  .contact-right h3::after{
+    content:"";
+    display:block;
+    width:240px;
+    height:2px;
+    background:linear-gradient(90deg,#d48b9c,#f3c1cc);
+    margin:10px auto 0;
+    border-radius:2px;
+}
+.contact-right p{
+    margin-bottom:16px;
+}
+.contact-item{
+    margin-bottom:18px;    
+}
+.contact-item h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+    margin-bottom:3px; 
+    text-align:center;
+}
+.contact-item p{
+    font-size:15px;
+    text-align:center;
+}
+.contact-item a{
+    color:var(--rose);
+    text-decoration:none;
+    font-weight:500;
+}
+.contact-item a {
+    position: relative;
+    color: var(--rose);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-item a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;           
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #d48b9c, #f3c1cc); 
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+.contact-item a:hover::after {
+    width: 100%;            
+}
+
+  /* DÁRKOVÉ POUKAZY */
+#voucher{
+    background:linear-gradient(135deg,#fdebee,#fff7f9);
+    text-align:center;
+    max-width:100%;
+    margin:0;
+}
+.mobile-break{
+    display:none;
+}
+
+@media(max-width:768px){
+    .mobile-break{
+        display:inline;
+    }
+}
+
+.voucher-box{
+    max-width:600px;
+    margin:auto;
+}
+.voucher-box img{
+    width:260px;
+    margin-bottom:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+.voucher-box p{
+    font-size:17px;
+    margin-bottom:18px;
+}
+  
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#8c6a73;
+    background:linear-gradient(135deg,#fdebee,#fff7f9);
+    border-top:1px solid rgba(212,139,156,0.25);
+}
+  .business-info{
+    font-size:13px;
+    opacity:0.8;
+}
+  .desktop-separator{
+    display:inline;
+}
+  .hamburger{
+    display:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    header h1{
+        font-size:40px;
+    }
+    .hero-box{
+        padding:50px 30px;
+        border-radius:40px;
+    }
+    section{
+        padding:70px 20px;
+    }
+    section h2{
+        font-size:34px;
+    }
+header.banner{
+    height:40vh;
+    min-height:250px;
+    }
+}
+
+/* Facebook ikonka v menu */
+.fb-btn{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(212,139,156,0.15);
+    backdrop-filter:blur(6px);
+    border-radius:50%;
+    color:black;
+    text-decoration:none;
+    font-weight:700;
+    font-size:18px;
+    font-family:'Montserrat',sans-serif;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    transition:0.3s ease;
+}
+  .fb-btn img{
+    width:18px;
+    height:18px;
+    display:block;
+}
+.fb-btn:hover{
+    background:rgba(212,139,156,0.25);
+    transform:translateY(-50%) scale(1.1);
+    color:#7a3f4d;
+}
+
+@media(max-width:768px){
+    .fb-btn{
+        display:none;
+    }
+}
+
+/* Instagram ikonka v menu */
+.ig-btn{
+    position:absolute;
+    left:68px;
+    top:50%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(212,139,156,0.15);
+    backdrop-filter:blur(6px);
+    border-radius:50%;
+    color:var(--dark);
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    transition:0.3s ease;
+}
+.ig-btn img{
+    width:16px;
+    height:16px;
+    display:block;
+}
+.ig-btn:hover{
+    background:rgba(212,139,156,0.25);
+    transform:translateY(-50%) scale(1.1);
+    color:#7a3f4d;
+}
+
+/* Animace nadpisů — zoom + fade + slide */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes headingReveal{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(0.92);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+section h2{
+    opacity:0;
+}
+section h2.animate-h2{
+    animation:headingReveal 0.9s ease-out forwards;
+}
+
+/* Banner */
+header.banner{
+    animation:fadeUp 1.2s ease-out forwards;
+}
+
+/* Menu */
+nav{
+    animation:fadeUp 0.8s ease-out forwards;
+}
+
+/* --- Studio fotky (grid) --- */
+#studio .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+#studio .gallery img {
+    width: 100%;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;       
+    user-select: none;
+}
+#studio .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* --- Horizontálně posuvná Galerie --- */
+#gallery .gallery {
+    display: flex;           
+    overflow-x: auto;        
+    scroll-behavior: auto;   
+    gap: 20px;
+    padding: 10px 0;
+    cursor: default;           
+}
+#gallery .gallery img {
+    flex: 0 0 auto;          
+    width: 250px;            
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease; 
+}
+#gallery .gallery img:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Wrapper pro horizontální galerii */
+.gallery-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Horizontální galerie uvnitř wrapperu */
+#gallery .gallery {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* prostor před první a za poslední fotkou */
+#gallery .gallery::before{
+    content: "";
+    flex: 0 0 0;
+}
+
+#gallery .gallery::after{
+    content: "";
+    flex: 0 0 10px;
+}
+
+/* Skrýt scroll bar */
+#gallery .gallery::-webkit-scrollbar {
+    display: none;
+}
+
+/* Fotky */
+#gallery .gallery img {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;      
+    user-select: none;    
+}
+
+/* šipky */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--rose);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* hover efekt šipek */
+.scroll-btn:hover {
+    background: rgba(212,139,156,0.6);
+}
+
+/* pozice levé a pravé šipky */
+.scroll-btn.left {
+    left: 12px;
+    display: none; /* levá šipka skrytá na startu */
+}
+
+.scroll-btn.right {
+    right: 12px;
+    display: flex; /* pravá šipka vidět na startu */
+}
+
+/* indikace začátku a konce */
+.scroll-btn.at-start {
+    display: none; /* levá šipka se skryje, když je na začátku */
+}
+
+.scroll-btn.at-end {
+    display: none; /* pravá šipka se skryje, když je na konci */
+}
+
+  /* --- Ceník --- */
+#pricing .pricing{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+  /* --- Ceník karta --- */
+
+.pricing-card{
+    max-width:420px;
+    margin:0 auto;
+    background:white;
+    border-radius:30px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+}
+  @media (min-width:769px){
+    #pricing .pricing-card{
+        max-width:1000px;
+    }
+}
+
+.pricing-card img{
+    width:170px;
+    margin-bottom:0px;
+}
+
+.pricing-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.pricing-card p{
+    font-size:15px;
+    margin-bottom:25px;
+}
+
+/* tlačítko */
+
+.pricing-toggle{
+    background:linear-gradient(135deg,#d48b9c,#f3c1cc);
+    border:none;
+    padding:12px 30px;
+    border-radius:40px;
+    color:white;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+  .pricing-toggle:hover{
+    transform:scale(1.08);
+}
+
+/* skrytý obsah */
+
+.pricing-content{
+    max-height:0;
+    overflow:hidden;
+    transition:0.4s ease;
+    margin-top:20px;
+}
+
+/* otevřený obsah */
+
+.pricing-content.open{
+    max-height:2000px;
+}
+
+/* jednotlivé řádky ceníku */
+
+.pricing-item{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid rgba(212,139,156,0.25);
+    font-size:15px;
+    font-weight:600;
+    font-variant-numeric: tabular-nums;
+
+    max-width:520px;
+    margin:0 auto;
+}
+
+  .pricing-item span:first-child{
+    font-weight:600;
+}
+  .pricing-note{
+    font-size:14px;
+    margin:18px 0;
+    opacity:0.85;
+    text-align:left;
+
+    position:relative;
+    padding-left:22px;
+}
+
+  .pricing-note:not(.no-bullet){
+    margin-left:40px;
+}
+  .no-bullet::before{
+    display:none;
+}
+
+/* stylová odrážka */
+.pricing-note::before{
+    content:"";
+    position:absolute;
+    left:0px;
+    top:9px;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:linear-gradient(135deg,#d48b9c,#f3c1cc);
+}
+
+ .pricing-separator{
+    margin-top:40px;
+}
+
+.pricing-valid{
+    margin-top:20px;
+    font-size:14px;
+    text-align:right;
+    opacity:0.7;
+}
+
+  .pricing-close{
+    margin-top:25px;
+    background:linear-gradient(135deg,#d48b9c,#f3c1cc);
+    border:none;
+    padding:12px 30px;
+    border-radius:40px;
+    color:white;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+.pricing-close:hover{
+    transform:scale(1.08);
+}
+
+/* --- Kontakt: hover efekt pro text a ikonky --- */
+.contact-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* mezera mezi ikonou a textem */
+}
+
+.contact-line a {
+    position: relative;
+    color: var(--rose);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-line a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #d48b9c, #f3c1cc);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.contact-line:hover a::after {
+    width: 100%; /* linka se rozvine pod textem */
+}
+
+.icon-phone,
+.icon-email {
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+  .icon-car{
+    width:18px;
+    height:18px;
+    vertical-align:middle;
+}
+
+.contact-line:hover .icon-phone,
+.contact-line:hover .icon-email {
+    transform: scale(1.1);       /* lehké zvětšení */
+    fill: url(#gradient-contact); /* gradient */
+}
+
+    @media(max-width:768px){
+
+    /* HEADER / HERO */
+    header.banner{
+        height:60vh;           /* vyšší banner, více prostoru pro hero-box */
+        min-height:350px;      /* alespoň polovina původní PC výšky */
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:0 15px;        /* menší okraje pro mobil */
+    }
+
+    .hero-box{
+        padding:40px 20px;     /* menší padding, stále dost místa pro text */
+        border-radius:30px;    /* mírně menší radius pro mobil */
+        max-width:90%;         /* aby se nevešel mimo obrazovku */
+        box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    header h1{
+        font-size:32px;        /* zmenšení, aby se vešel na obrazovku */
+        line-height:1.2;
+        text-align:center;
+    }
+
+    header p{
+        font-size:16px;
+        margin:15px 0 25px;
+        text-align:center;
+    }
+
+    /* NAV */
+    nav ul{
+        flex-wrap:wrap;         /* menu se přizpůsobí šířce mobilu */
+    }
+
+    nav li{
+        margin:5px 4px;
+    }
+
+    nav a{
+        padding:12px 10px;     /* menší touch area */
+        font-size:14px;
+    }
+
+    @media(max-width:768px){
+
+    /* --- STUDIO --- */
+    #studio .gallery {
+        display: flex;            
+        gap: 15px;
+        overflow-x: auto;         
+        scroll-behavior: smooth;  
+        padding: 10px 0;
+        cursor: grab;             
+    }
+
+    #studio .gallery img {
+        flex: 0 0 auto;           
+        width: 250px;             
+        height: 250px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    /* --- GALERIE --- */
+    #gallery .gallery {
+        display: flex;           
+        gap: 15px;
+        overflow-x: auto;        
+        scroll-behavior: smooth; 
+        padding: 10px 0;
+        cursor: grab;            
+    }
+
+    #gallery .gallery img {
+        flex: 0 0 auto;          
+        width: 250px;            
+        height: 250px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        user-select: none;       
+    }
+
+    /* --- Mezera jen za poslední fotkou --- */
+    #studio .gallery::before,
+    #gallery .gallery::before {
+        content: "";
+        flex: 0 0 0; /* úplně vlevo žádná mezera */
+    }
+
+    #studio .gallery::after,
+    #gallery .gallery::after {
+        content: "";
+        flex: 0 0 10px; /* mezera jen za poslední fotkou */
+    }
+
+    /* Skrýt scroll bar */
+    #studio .gallery::-webkit-scrollbar,
+    #gallery .gallery::-webkit-scrollbar {
+        display: none;
+    }
+    #studio .gallery,
+    #gallery .gallery {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+    /* HORIZONTÁLNÍ GALERIE */
+    #gallery .gallery-wrapper{
+        padding:0 10px;
+    }
+
+    #gallery .gallery{
+        gap:15px;
+    }
+
+    #gallery .gallery img{
+        width:200px;
+        height:200px;
+        border-radius:20px;
+    }
+
+    .scroll-btn{
+        width:35px;
+        height:35px;
+        font-size:20px;
+    }
+
+    /* CONTACT */
+    .contact{
+        padding:20px;
+        max-width:95%;
+    }
+
+    .contact-item h3{
+        font-size:18px;
+    }
+
+    .contact-item p{
+        font-size:14px;
+    }
+
+    /* FOOTER */
+    footer{
+        font-size:14px;
+        padding:25px 15px;
+    }
+
+    /* FACEBOOK BUTTON */
+    .fb-btn{
+        display:flex;       /* lze nechat viditelné i na mobilu */
+        width:36px;
+        height:36px;
+        font-size:16px;
+        left:15px;
+    }
+}
+    @media(max-width:768px){
+    /* Šipky pro Studio sekci */
+    #studio .scroll-btn {
+        position: absolute;
+        top: 62%;
+        transform: translateY(-50%);
+        background: var(--rose);
+        border: none;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+        /* Šipky pro Galerie sekci – stejné jako Studio */
+    #gallery .scroll-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    #studio .scroll-btn:hover {
+        background: rgba(212,139,156,0.6);
+    }
+
+    #studio .scroll-btn.left {
+        left: 22px;
+    }
+
+    #studio .scroll-btn.right {
+        right: 22px;
+    }
+}
+       
+</style>
+</head>
+
+<body>
+
+
+<nav>
+
+<a href="https://www.facebook.com/nail.studio.anet/" 
+   class="fb-btn"
+   target="_blank"
+   rel="noopener"
+   aria-label="Facebook">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+
+</a>
+
+<a href="https://www.instagram.com/nail.studio.anet/"
+   class="ig-btn"
+   target="_blank"
+   rel="noopener"
+   aria-label="Instagram">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+
+</a>
+
+<!-- Hamburger button -->
+<button class="hamburger" aria-label="Otevřít menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<ul>
+    <li><a href="#">DOMŮ</a></li>
+    <li><a href="#about">O MNĚ</a></li>
+    <li><a href="#services">SLUŽBY</a></li>
+    <li><a href="#studio">STUDIO</a></li>
+    <li><a href="#gallery">GALERIE</a></li>
+    <li><a href="#pricing">CENÍK</a></li>
+    <li><a href="#contact">KONTAKT</a></li>
+</ul>
+</nav>
+
+
+<header class="banner" id="home">
+</header>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>O mně</h2>
+
+  <div class="about-wrapper">
+    <div class="about-photo">
+      <img src="Anet.jpeg" alt="Anet">
+    </div>
+
+    <div class="about-text">
+      <p>
+        Jmenuji se Anet a nehtové modeláži se věnuji více než 12 let.
+        Ve své práci propojuji preciznost, smysl pro detail a individuální přístup ke každé klientce. 
+        Kvalita a Vaše spokojenost je pro mě vždy na prvním místě – jak po stránce estetiky, tak komfortu a péče.
+      </p>
+    </div>
+  </div>
+
+  <!-- NOVÝ BLOK – jemná poznámka -->
+  <div class="about-note">
+   <p>
+<strong>Aktuálně: Díky dlouhodobé důvěře mých klientek mám nyní plně obsazenou kapacitu.
+Vedu však pořadník, kam Vás ráda zapíšu.</strong>
+</p>
+  </div>
+
+  <div class="about-icons">
+
+  <div class="about-icon-item">
+    <div class="about-icon">
+        <img src="icon-hygiene.png" alt="Hygiena">
+    </div>
+    <h3>Hygiena</h3>
+    <p>Dokonalá hygiena a čistota ve studiu je pro mě absolutní prioritou - bez kompromisů.</p>
+  </div>
+
+  <div class="about-icon-item">
+    <div class="about-icon">
+        <img src="icon-experience.png" alt="Praxe">
+    </div>
+    <h3>Profesionalita</h3>
+    <p>Nepracuji systémem „velkovýroby“ – kvalita je pro mě vždy důležitější než kvantita.</p>
+  </div>
+
+  <div class="about-icon-item">
+    <div class="about-icon">
+        <img src="icon-individual.png" alt="Přístup">
+    </div>
+    <h3>Osobní přístup</h3>
+    <p>Váš rezervovaný čas patří výhradně vám. Dopřejte si u mě chvíli jen pro sebe.</p>
+  </div>
+
+  <div class="about-icon-item">
+    <div class="about-icon">
+        <img src="icon-quality.png" alt="Kvalita">
+    </div>
+    <h3>Prémiové materiály</h3>
+    <p>Používám certifikované materiály nejvyšší kvality. Zasloužíte si to nejlepší.</p>
+  </div>
+
+</div>
+  
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+<h2>Služby</h2>
+
+<div class="services-list">
+
+<div class="service-item">
+<h3>Manikúra a výživa</h3>
+<p>
+Šetrné a precizní ošetření přírodních nehtů i jejich okolí pomocí moderních technik.
+Výsledkem jsou dokonale upravené, čisté a zdravě vypadající nehty.
+Ve studiu nabízím také hloubkovou regeneraci poškozených nehtů systémem IBX.
+</p>
+</div>
+
+<div class="service-item">
+<h3>Modeláž a zpevnění nehtů</h3>
+<p>
+Techniku modeláže volím vždy s ohledem na stav přírodních nehtů i Vaše přání.
+Výsledkem jsou pevné, přirozeně působící a dokonale tenké nehty bez poškození přírodního nehtu.
+</p>
+</div>
+
+<div class="service-item">
+<h3>Gellak na nohou</h3>
+<p>
+Precizní úprava nehtů a okolí doplněná o dokonalou aplikaci barevného gellaku.
+Výdrž je individuální dle růstu přírodních nehtů, obvykle 5 – 8 týdnů.
+Jedná se pouze o úpravu nehtů, pedikúru nenabízím.
+</p>
+</div>
+
+<div class="service-item">
+<h3>Individuální kurz</h3>
+<p>
+Nehtový svět je mou vášní – stejně jako práce s klientkami i předávání zkušeností dalším profesionálkám.
+Nabízím individuální kurzy pro začínající i pokročilé nehtařky, vždy přizpůsobené konkrétním potřebám.
+Veškeré vybavení je zajištěno ve studiu. Kurz probíhá v mém salonu v Ústí nad Labem a je zakončen certifikátem.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- STUDIO -->
+<section id="studio">
+
+<h2>Studio</h2>
+
+<div class="gallery">
+
+<img src="studio1.jpg" alt="Studio">    
+<img src="studio2.jpg" alt="Studio">
+<img src="studio3.jpg" alt="Studio">
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2>Galerie</h2>
+
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left">&#10094;</button>
+    <div class="gallery">
+        <img src="foto10.jpg" alt="Foto 10">
+        <img src="foto1.jpg" alt="Foto 1">
+        <img src="foto2.jpg" alt="Foto 2">
+        <img src="foto3.jpg" alt="Foto 3">
+        <img src="foto6.jpg" alt="Foto 6">        
+
+        <img src="new1.jpeg" alt="Foto">
+        <img src="new2.jpeg" alt="Foto">
+        <img src="new3.jpeg" alt="Foto">
+        <img src="new4.jpeg" alt="Foto">
+        <img src="new5.jpeg" alt="Foto">
+        <img src="new6.jpeg" alt="Foto">
+        <img src="new7.jpeg" alt="Foto">
+
+         <img src="foto9.jpg" alt="Foto 9">
+      
+      </div>
+    <button class="scroll-btn right">&#10095;</button>
+  </div>
+
+</section>
+
+  <!-- CENÍK -->
+<section id="pricing">
+
+<h2>Ceník</h2>
+
+<div class="pricing-card">
+
+    <img src="nails.png" alt="Ceník">
+
+   <p>
+        Kompletní přehled cen a doplňujících informací k jednotlivým službám.
+    </p>
+
+    <button class="pricing-toggle">
+        Zobrazit ceník
+    </button>
+
+    <div class="pricing-content">
+
+<div class="pricing-item">
+<span>Modeláž do 100 minut</span>
+<span>1&nbsp;100,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Modeláž do 120 minut</span>
+<span>1&nbsp;280,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Modeláž do 150 minut</span>
+<span>1&nbsp;480,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Každých dalších 30 min</span>
+<span>330,-</span>
+</div>
+
+<p class="pricing-note pricing-separator no-bullet">
+Cena se odvíjí od času stráveného ve studiu. Délka služby a výsledná cena je
+ovlivněna několika faktory – např. zda se jedná o novou modeláž, doplnění či
+gellak, stav nehtů a okolí, opravy, náročnost zdobení apod.
+Veškeré zdobení je v ceně.
+</p>
+
+<div class="pricing-item">
+<span>Gellak na nohou (včetně úpravy nehtů a manikúry)</span>
+<span>690,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Přístrojová / hloubková manikúra (kompletní ošetření)</span>
+<span>590,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Odstranění materiálu (včetně úpravy nehtů a manikúry)</span>
+<span>690,-</span>
+</div>
+
+<div class="pricing-item">
+<span>IBX systém (výživa přírodních nehtů) + manikúra</span>
+<span>690,-</span>
+</div>
+
+<div class="pricing-item">
+<span>IBX systém + odstranění materiálu + manikúra</span>
+<span>890,-</span>
+</div>
+
+<div class="pricing-item">
+<span>Expres termín / termín nad rámec pracovní doby</span>
+<span>300,-</span>
+</div>
+
+<p class="pricing-note pricing-separator pricing-bullet">
+Za nevčasné zrušení termínu (min. 24 hodin předem) je účtován poplatek
+50 % z objednané služby.
+</p>
+
+<p class="pricing-note pricing-bullet">
+Pro nové klienty je na první termín vyžadována záloha ve výši
+50 % z ceny objednané služby.
+</p>
+
+<p class="pricing-note pricing-bullet">
+Záruka na provedenou službu je 48 hodin. Nevztahuje se na mechanické poškození.
+</p>
+
+<p class="pricing-note pricing-bullet">
+Platba v hotovosti nebo na místě QR kódem (pomocí okamžité platby).
+</p>
+
+<p class="pricing-note pricing-bullet">
+Vietnamské nehty z důvodu alergie nepředělávám a neodstraňuji!
+</p>
+
+<p class="pricing-valid">
+Ceník platný od 1. 1. 2026
+</p>
+
+    <button class="pricing-close">
+    Skrýt ceník
+</button>
+
+</div>
+
+    </div>
+
+</div>
+
+</section>
+
+  <section id="voucher">
+
+<h2>Dárkové poukazy</h2>
+
+<div class="voucher-box">
+
+<img src="voucher3.jpeg" alt="Dárkový poukaz">
+
+<p class="voucher-text">
+Dárkové poukazy jsou dostupné
+<span class="mobile-break"><br></span>
+výhradně pro stálé klientky.
+</p>
+
+<p class="voucher-text">
+Prosím o předchozí domluvu,
+<span class="mobile-break"><br></span>
+abych mohla poukaz připravit k předání.
+</p>
+
+</div>
+
+</section>
+  
+<!-- CONTACT -->
+<section id="contact">
+
+<h2>Kontakt</h2>
+
+<div class="contact">
+
+<div class="contact-grid">
+
+<div class="contact-left">
+
+  <!-- Telefon -->
+  <div class="contact-item">
+    <h3>Telefon</h3>
+    <p class="contact-line">
+      <svg class="icon-phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="var(--rose)" style="vertical-align:middle;">
+        <defs>
+          <linearGradient id="gradient-contact" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d48b9c"/>
+            <stop offset="100%" stop-color="#f3c1cc"/>
+          </linearGradient>
+        </defs>
+        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.36 11.36 0 003.54.57 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.22.19 2.42.57 3.54a1 1 0 01-.21 1.11l-2.24 2.24z"/>
+      </svg>
+      <a href="tel:+420777950922">777 950 922</a>
+    </p>
+  </div>
+
+  <!-- Email -->
+  <div class="contact-item">
+    <h3>Email</h3>
+    <p class="contact-line">
+      <svg class="icon-email" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="var(--rose)" style="vertical-align:middle;">
+        <defs>
+          <linearGradient id="gradient-contact" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d48b9c"/>
+            <stop offset="100%" stop-color="#f3c1cc"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8l8 5 8-5v10H4z"/>
+      </svg>
+      <a href="mailto:anet@nailstudioanet.cz">anet@nailstudioanet.cz</a>
+    </p>
+  </div>
+
+  <!-- Adresa (bez ikonky) -->
+  <div class="contact-item">
+    <h3>Adresa</h3>
+    <p>
+<a href="https://maps.app.goo.gl/3qkNqseTs1RADRmc6" target="_blank">
+Masarykova 633/318<br>
+400 01 Ústí nad Labem
+</a>
+</p>
+  </div>
+
+  <!-- Otevírací doba -->
+  <div class="contact-item">
+    <h3>Otevírací doba</h3>
+    <p>- dle objednávek -</p>
+  </div>
+
+</div> 
+
+  <div class="contact-right">
+
+<h3>Jak se ke mně dostanete</h3>
+
+<strong class="contact-line">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="var(--rose)" style="vertical-align:middle;">
+<path d="M4 16c0 1.1.9 2 2 2l-1 1v1h2l1-1h8l1 1h2v-1l-1-1c1.1 0 2-.9 2-2V6c0-3-3-4-8-4S4 3 4 6v10zm2 0V9h12v7H6zm0-9V6c0-1.1 2.7-2 6-2s6 .9 6 2v1H6zm2 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm8 0a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/>
+</svg>
+MHD
+</strong><br>
+Pokud přijedete MHD, vystupte na zastávce Bukov Rondel.
+Budova se nachází přímo u zastávky.
+</p>
+
+<p><strong class="contact-line">
+<img src="car1.png" alt="Automobilem" class="icon-car">
+Automobilem
+</strong><br>
+Parkování je možné zdarma u Penny Marketu nebo podél hokejbalového hřiště.
+Prosím, neparkujte před ani za budovou – tato místa jsou soukromá.
+</p>
+
+<p><strong class="contact-line">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="var(--rose)" style="vertical-align:middle;">
+<path d="M3 22h18v-2H3v2zm2-4h3V8H5v10zm5 0h4V4h-4v14zm6 0h3v-6h-3v6z"/>
+</svg>
+V budově
+</strong><br>
+Salon se nachází v 7. patře.  
+K dispozici jsou dva výtahy - vypadají trochu unaveně, ale fungují spolehlivě :)
+Po příchodu do patra zazvoňte na zvonek Dvořáková, osobně si Vás vyzvednu.
+</p>
+
+</div>
+
+</div> 
+</section>
+
+
+<footer>
+© 2026 Nail Studio Anet | Webdesign ZajaIT<br>
+<span class="business-info">
+Aneta Dvořáková | IČO: 06822649<span class="desktop-separator"> | </span><span class="mobile-break"><br></span>
+Sídlo: Peškova 513, 403 31 Ústí nad Labem<br>
+Zapsána v živnostenském rejstříku
+</span>
+</footer>
+
+<!-- CSS u obrázků galerie -->
+<style>
+#gallery .gallery img {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ===== Studio Lightbox ===== */
+#studioLightbox{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px; /* malý padding od okrajů obrazovky */
+}
+
+#studioLightbox img {
+    max-width: 95vw;   
+    max-height: 90vh;  
+    width: auto;       
+    height: auto;      
+    border-radius: 20px;
+    cursor: default !important; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.7s ease, opacity 0.7s ease, box-shadow 0.3s ease; /* původní rychlost zachována */
+}
+
+/* Lightbox: šipky a křížek → ručička */
+#studioLightbox .scroll-btn,
+#studioClose {
+    cursor: pointer !important;
+}
+
+#studioLightbox.show img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#studioLightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    cursor: pointer; /* ručka při hoveru */
+}
+
+#studioClose{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+    z-index:10;
+}
+
+#studioPrev,
+#studioNext{
+    position:absolute;
+    background:var(--rose);
+    border:none;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    font-size:28px;
+    color:white;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background 0.3s ease;
+}
+
+#studioPrev:hover,
+#studioNext:hover{
+    background:rgba(212,139,156,0.6);
+}
+
+#studioPrev{ left:20px; }
+#studioNext{ right:20px; }
+
+/* Animace otevření fotky v Lightboxu */
+#studioLightbox img {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+#studioLightbox.show img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ===== Gallery Lightbox ===== */
+#galleryLightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+#galleryLightbox img {
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    cursor: default !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.7s ease, opacity 0.7s ease, box-shadow 0.3s ease;
+}
+
+/* Lightbox: šipky a křížek → ručička */
+#galleryLightbox .scroll-btn,
+#galleryClose {
+    cursor: pointer !important;
+}
+
+#galleryLightbox.show img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#galleryLightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    cursor: pointer; /* ručka při hoveru */
+}
+
+#galleryClose {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#galleryPrev,
+#galleryNext {
+    position: absolute;
+    background: var(--rose);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 28px;
+    color: white;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+#galleryPrev:hover,
+#galleryNext:hover {
+    background: rgba(212,139,156,0.6);
+}
+
+#galleryPrev { left: 20px; }
+#galleryNext { right: 20px; }
+
+@media(max-width:768px){
+
+  .desktop-separator{
+    display:none;
+}
+  .contact-left{
+    width:100%;
+    padding-left:0;
+}
+  .contact-right{
+    border-left:none;
+    padding-left:0;
+    border-top:1px solid rgba(212,139,156,0.3);
+    margin-top:5px;
+    padding-top:30px;
+}
+
+  .contact-right p{
+    margin-bottom:24px;
+}
+
+.contact-right strong{
+    display:block;
+    margin-top:18px;
+}
+
+.contact-right h3{
+    margin-top:10px;
+}
+
+.contact-right h3::after{
+    width:160px;
+}
+
+.contact-grid{
+    flex-direction:column;
+}
+
+    body{
+    padding-top:60px;
+}
+
+  .contact-left .contact-item:last-child{
+    margin-bottom:-20px;
+}
+
+    /* NAV pruh – zachovat výšku a zarovnání */
+nav{
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    background:white;
+    z-index:9999;
+}
+  /* FB tlačítko zůstává vlevo */
+  .fb-btn{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:200;
+  }
+
+  /* Hamburger doprava */
+  .hamburger{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:30px;
+    height:25px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform: translateY(-50%);
+    z-index:200;
+  }
+
+  .hamburger span{
+    display:block;
+    height:3px;
+    width:100%;
+    background: linear-gradient(135deg,#d48b9c,#f3c1cc);
+    border-radius:2px;
+    transition: all 0.4s ease;
+  }
+
+  /* Menu skryté, bude se rozbalovat po kliknutí */
+  nav ul{
+    list-style:none;
+    opacity: 0;
+    transform: translateY(-10px); /* mírně posunout nahoru při skrytí */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none; /* aby se nedalo klikat, když je skryté */
+    flex-direction: column;
+    width:100%;
+    background: rgba(255,255,255,0.95);
+    position:absolute;
+    top:60px;
+    left:0;
+    padding:10px 0;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(12px);
+    z-index:150;
+}
+
+nav ul.show{
+    opacity: 1;
+    transform: translateY(0); /* vrátit na místo */
+    pointer-events: auto; /* aktivní při zobrazení */
+}
+
+  nav li{
+    margin:10px 0;
+  }
+
+  nav a{
+    padding:10px 0;
+    font-size:16px;
+    display:block;
+    border-radius:30px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  nav a:hover{
+    background: linear-gradient(135deg,#d48b9c,#f3c1cc);
+    color:white;
+  }
+
+    /* Zvýraznění aktivní položky menu na mobilu */
+nav a.active {
+    background: linear-gradient(135deg,#d48b9c,#f3c1cc);
+    color: white;
+}
+    /* Zvýraznění aktivní položky menu na mobilu */
+nav a.active {
+    background: linear-gradient(135deg,#d48b9c,#f3c1cc);
+    color: white;
+}
+
+    body.no-scroll {
+    overflow: hidden;
+    touch-action: none;       
+}
+    /* Skrýt bubble efekt na mobilu */
+nav a::before {
+    display: none;       /* už je */
+    opacity: 0 !important;
+    transition: none !important;   /* ← toto přidat */
+}
+  .about-icons{
+    grid-template-columns:1fr;
+    max-width:260px;
+}
+
+  #pricing .pricing-item{
+    align-items:flex-end;
+    gap:10px;
+    text-align:left;
+}
+
+#pricing .pricing-item span:first-child{
+    flex:1;
+}
+
+#pricing .pricing-item span:last-child{
+    white-space:nowrap;
+}
+
+#pricing .pricing-note{
+    margin-left:0;
+    padding-left:18px;
+    text-align:left;
+}
+
+#pricing .pricing-note.no-bullet{
+    text-align:left;
+    margin-left:0;
+    padding-left:0;
+}
+
+}
+
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+const gallery = document.querySelector("#gallery .gallery");
+const btnLeft = document.querySelector(".scroll-btn.left");
+const btnRight = document.querySelector(".scroll-btn.right");
+
+    const studioGallery = document.querySelector("#studio .gallery");
+
+// --- Drag prstem / myší pro Studio ---
+let isStudioDown = false;
+let studioStartX;
+let studioScrollLeft;
+
+studioGallery.addEventListener("mousedown", (e) => {
+    if(window.innerWidth > 768) return; // jen mobil
+    isStudioDown = true;
+    studioStartX = e.clientX;
+    studioScrollLeft = studioGallery.scrollLeft;
+    studioGallery.style.cursor = "grabbing";
+    e.preventDefault();
+});
+
+studioGallery.addEventListener("mouseup", () => {
+    isStudioDown = false;
+    studioGallery.style.cursor = "default";
+});
+
+studioGallery.addEventListener("mouseleave", () => {
+    isStudioDown = false;
+    studioGallery.style.cursor = "default";
+});
+
+studioGallery.addEventListener("mousemove", (e) => {
+    if (!isStudioDown) return;
+    e.preventDefault();
+    const deltaX = e.clientX - studioStartX;
+    studioGallery.scrollLeft = studioScrollLeft - deltaX;
+});
+
+// --- Šipky ---
+function scrollToImage(direction) {
+    // jen mobil — desktop necháme beze změny
+    if (window.innerWidth > 768) {
+        gallery.scrollBy({ left: direction * 300, behavior: "smooth" });
+        return;
+    }
+
+    const images = Array.from(gallery.querySelectorAll("img"));
+
+    // najdeme index fotky, která je aktuálně nejblíže středu mezi šipkami
+    const galleryRect = gallery.getBoundingClientRect();
+    const galleryCenter = galleryRect.left + galleryRect.width / 2;
+
+    let currentIndex = 0;
+    let minDistance = Infinity;
+
+    images.forEach((img, i) => {
+        const imgRect = img.getBoundingClientRect();
+        const imgCenter = imgRect.left + imgRect.width / 2;
+        const distance = Math.abs(imgCenter - galleryCenter);
+        if (distance < minDistance) {
+            minDistance = distance;
+            currentIndex = i;
+        }
+    });
+
+    // nový index podle směru, omezíme na hranice galerie
+    let targetIndex = Math.min(Math.max(0, currentIndex + direction), images.length - 1);
+    const target = images[targetIndex];
+    const targetRect = target.getBoundingClientRect();
+
+    // scroll tak, aby byla fotka přesně uprostřed mezi šipkami
+    const targetScroll =
+        gallery.scrollLeft + (targetRect.left - galleryRect.left) + targetRect.width / 2 - galleryRect.width / 2;
+
+    gallery.scrollTo({
+        left: targetScroll,
+        behavior: "smooth"
+    });
+
+    setTimeout(updateArrowStates, 350);
+}
+
+btnLeft.addEventListener("click", () => scrollToImage(-1));
+btnRight.addEventListener("click", () => scrollToImage(1));
+
+// --- Drag podle myši ---
+let isDown = false;
+let startX;
+let scrollLeft;
+
+gallery.addEventListener("mousedown", (e) => {
+    isDown = true;
+    startX = e.clientX;
+    scrollLeft = gallery.scrollLeft;
+    gallery.style.cursor = "grabbing";
+    e.preventDefault();
+});
+
+gallery.addEventListener("mouseup", () => {
+    isDown = false;
+    gallery.style.cursor = "default";
+});
+
+gallery.addEventListener("mouseleave", () => {
+    isDown = false;
+    gallery.style.cursor = "default";
+});
+
+gallery.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const deltaX = e.clientX - startX;
+    gallery.scrollLeft = scrollLeft - deltaX;
+    updateArrowStates();
+});
+
+// --- Indikace začátku / konce galerie ---
+function updateArrowStates() {
+    // levá šipka
+    if (gallery.scrollLeft > 0) {
+        btnLeft.style.display = "flex"; // levá šipka vidět
+    } else {
+        btnLeft.style.display = "none"; // levá šipka skrytá
+    }
+
+    // pravá šipka
+    if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 1) {
+        btnRight.style.display = "none"; // pravá šipka skrytá na konci
+    } else {
+        btnRight.style.display = "flex"; // pravá šipka vidět
+    }
+}
+
+// zavolat při scrollu
+gallery.addEventListener("scroll", updateArrowStates);
+
+// inicializace
+gallery.scrollLeft = 0;   // ← přidat tento řádek
+updateArrowStates();
+
+// --- Animace nadpisů při scrollu ---
+const headings = document.querySelectorAll("section h2");
+
+const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("animate-h2");
+            obs.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.35
+});
+
+headings.forEach(h => observer.observe(h));
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const studioImages = document.querySelectorAll("#studio .gallery img");
+    const lightbox = document.getElementById("studioLightbox");
+    const lightboxImg = document.getElementById("studioLightboxImg");
+    const closeBtn = document.getElementById("studioClose");
+    const prevBtn = document.getElementById("studioPrev");
+    const nextBtn = document.getElementById("studioNext");
+
+    let currentIndex = 0;
+    // --- SWIPE PRO MOBIL (Studio Lightbox) ---
+let studioTouchStartX = 0;
+let studioTouchEndX = 0;
+
+lightbox.addEventListener("touchstart", (e) => {
+    if(window.innerWidth > 768) return; // jen mobil
+    studioTouchStartX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", (e) => {
+    if(window.innerWidth > 768) return; // jen mobil
+    studioTouchEndX = e.changedTouches[0].clientX;
+    handleStudioSwipe();
+});
+
+function handleStudioSwipe() {
+    const threshold = 50; // minimální vzdálenost pro swipe
+    const diffX = studioTouchEndX - studioTouchStartX;
+
+    if(Math.abs(diffX) > threshold){
+        if(diffX > 0){
+            // swipe doprava → předchozí fotka
+            changeImage(currentIndex - 1);
+        } else {
+            // swipe doleva → další fotka
+            changeImage(currentIndex + 1);
+        }
+    }
+}
+
+    // --- otevření Lightboxu ---
+    
+function updateLightboxArrowStates() {
+    // levá šipka
+    if(currentIndex > 0){
+        prevBtn.style.display = "flex";
+    } else {
+        prevBtn.style.display = "none";
+    }
+
+    // pravá šipka
+    if(currentIndex < studioImages.length - 1){
+        nextBtn.style.display = "flex";
+    } else {
+        nextBtn.style.display = "none";
+    }
+}
+
+    studioImages.forEach((img, index)=>{
+    img.addEventListener("click", ()=>{
+        currentIndex = index;
+        lightboxImg.src = studioImages[currentIndex].src;
+        lightbox.style.display = "flex";
+        document.body.classList.add("no-scroll");
+        setTimeout(() => {
+            lightbox.classList.add("show");
+            updateLightboxArrowStates(); // ← přidáno
+        }, 20);
+    });
+});;
+
+    // --- zavření Lightboxu ---
+    // --- zavření Lightboxu ---
+const closeLightbox = () => {
+    lightbox.classList.remove("show");          // fade efekt
+    setTimeout(() => {
+        lightbox.style.display = "none";       // schovat po animaci
+        // Odstraníme no-scroll jen pokud není otevřené mobilní menu
+        if(!navMenu.classList.contains("show")){
+            document.body.classList.remove("no-scroll");
+        }
+    }, 300);
+};
+
+// klik na křížek
+closeBtn.addEventListener("click", closeLightbox);
+
+// klik mimo obrázek
+lightbox.addEventListener("click", e => {
+    if(e.target === lightbox){
+        closeLightbox();
+    }
+});
+
+lightbox.addEventListener("click", e=>{
+    if(e.target === lightbox){
+        lightbox.classList.remove("show");
+        setTimeout(()=>{ lightbox.style.display="none"; }, 300);
+    }
+});
+
+    // --- fade efekt při změně obrázku ---
+    const changeImage = (newIndex) => {
+    if(newIndex < 0 || newIndex >= studioImages.length) return;
+    lightboxImg.style.opacity = 0;
+    setTimeout(() => {
+        currentIndex = newIndex;
+        lightboxImg.src = studioImages[currentIndex].src;
+        lightboxImg.style.opacity = 1;
+        updateLightboxArrowStates(); // ← přidáno
+    }, 200);
+};
+
+    // --- šipky Lightbox ---
+    const showPrev = () => changeImage(currentIndex - 1);
+    const showNext = () => changeImage(currentIndex + 1);
+
+    prevBtn.addEventListener("click", e=>{
+        e.stopPropagation();
+        showPrev();
+    });
+
+    nextBtn.addEventListener("click", e=>{
+        e.stopPropagation();
+        showNext();
+    });
+
+    // --- klávesnice ---
+    document.addEventListener("keydown", (e) => {
+        if(lightbox.style.display === "flex"){
+            if(e.key === "Escape") closeLightbox();
+            if(e.key === "ArrowLeft") showPrev();
+            if(e.key === "ArrowRight") showNext();
+        }
+    });
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const galleryImages = document.querySelectorAll("#gallery .gallery img");
+    const galleryLightbox = document.getElementById("galleryLightbox");
+    const galleryLightboxImg = document.getElementById("galleryLightboxImg");
+    const galleryCloseBtn = document.getElementById("galleryClose");
+    const galleryPrevBtn = document.getElementById("galleryPrev");
+    const galleryNextBtn = document.getElementById("galleryNext");
+
+    let currentGalleryIndex = 0;
+
+    // --- funkce pro indikaci začátku/konce ---
+    function updateGalleryLightboxArrowStates() {
+        if(currentGalleryIndex > 0){
+            galleryPrevBtn.style.display = "flex";
+        } else {
+            galleryPrevBtn.style.display = "none";
+        }
+
+        if(currentGalleryIndex < galleryImages.length - 1){
+            galleryNextBtn.style.display = "flex";
+        } else {
+            galleryNextBtn.style.display = "none";
+        }
+    }
+
+    // --- Swipe pro galerii Lightbox ---
+let startX = 0;
+let endX = 0;
+
+galleryLightbox.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+galleryLightbox.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const threshold = 50; // minimální vzdálenost pro swipe
+    const diffX = endX - startX;
+
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+            // swipe doprava → předchozí fotka
+            changeGalleryImage(currentGalleryIndex - 1);
+        } else {
+            // swipe doleva → další fotka
+            changeGalleryImage(currentGalleryIndex + 1);
+        }
+    }
+}
+    
+    // --- otevření Lightboxu ---
+    galleryImages.forEach((img, index) => {
+        img.addEventListener("click", () => {
+            currentGalleryIndex = index;
+            galleryLightboxImg.src = galleryImages[currentGalleryIndex].src;
+            galleryLightbox.style.display = "flex";
+            document.body.classList.add("no-scroll");
+            setTimeout(() => {
+                galleryLightbox.classList.add("show");
+                updateGalleryLightboxArrowStates(); // ← přidáno
+            }, 20);
+        });
+    });
+
+    // --- zavření Lightboxu ---
+    const closeGalleryLightbox = () => {
+    galleryLightbox.classList.remove("show");
+    setTimeout(() => {
+        galleryLightbox.style.display = "none";
+        document.body.classList.remove("no-scroll"); // obnoví scroll
+    }, 300);
+};
+
+    galleryCloseBtn.addEventListener("click", closeGalleryLightbox);
+    galleryLightbox.addEventListener("click", e => {
+        if (e.target === galleryLightbox) closeGalleryLightbox();
+    });
+
+    // --- fade efekt při změně obrázku ---
+    const changeGalleryImage = (newIndex) => {
+        if (newIndex < 0 || newIndex >= galleryImages.length) return;
+        galleryLightboxImg.style.opacity = 0;
+        setTimeout(() => {
+            currentGalleryIndex = newIndex;
+            galleryLightboxImg.src = galleryImages[currentGalleryIndex].src;
+            galleryLightboxImg.style.opacity = 1;
+            updateGalleryLightboxArrowStates(); // ← přidáno
+        }, 200);
+    };
+
+    // --- šipky Lightbox ---
+    galleryPrevBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        changeGalleryImage(currentGalleryIndex - 1);
+    });
+    galleryNextBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        changeGalleryImage(currentGalleryIndex + 1);
+    });
+
+    // --- klávesnice ---
+    document.addEventListener("keydown", e => {
+        if (galleryLightbox.style.display === "flex") {
+            if (e.key === "Escape") closeGalleryLightbox();
+            if (e.key === "ArrowLeft") changeGalleryImage(currentGalleryIndex - 1);
+            if (e.key === "ArrowRight") changeGalleryImage(currentGalleryIndex + 1);
+        }
+    });
+
+});
+
+// vždy po reloadu začni nahoře
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+
+// Hamburger toggle pro mobil
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector("nav ul");
+
+hamburger.addEventListener("click", () => {
+    const spans = hamburger.querySelectorAll("span");
+
+    if (!hamburger.classList.contains("open")) {
+        // OTEVÍRÁNÍ → stejné tempo a efekt jako zavírání
+        navMenu.classList.add("show");
+        hamburger.classList.add("open");
+
+        // animace čárek
+        spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+        spans[1].style.opacity = "0";
+        spans[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+
+        document.body.classList.add("no-scroll");
+
+    } else {
+        // ZAVÍRÁNÍ → necháme jak je
+        navMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+
+        spans[0].style.transform = "rotate(0) translate(0,0)";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "rotate(0) translate(0,0)";
+
+        document.body.classList.remove("no-scroll");
+        if(window.scrollY === 0){
+    mobileLinks.forEach(link => {
+        if(link.getAttribute("href") === "#"){
+            link.classList.remove("active");
+        }
+    });
+}
+    }
+});
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+navMenu.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY; // ← nově
+});
+
+navMenu.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY; // ← nově
+    handleSwipeGesture();
+});
+
+function handleSwipeGesture() {
+    // horizontální swipe (pokud chceš zachovat)
+    if (touchEndX - touchStartX > 50) {  
+        navMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+
+        const spans = hamburger.querySelectorAll("span");
+        spans[0].style.transform = "rotate(0) translate(0,0)";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "rotate(0) translate(0,0)";
+        
+        document.body.classList.remove("no-scroll"); // obnovíme scroll
+    }
+
+    // vertikální swipe zespodu nahoru
+    if (touchStartY - touchEndY > 50) {
+        navMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+
+        const spans = hamburger.querySelectorAll("span");
+        spans[0].style.transform = "rotate(0) translate(0,0)";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "rotate(0) translate(0,0)";
+
+        document.body.classList.remove("no-scroll"); // obnovíme scroll
+    }
+}
+
+    // Zavření menu kliknutím mimo něj
+document.addEventListener("click", (e) => {
+
+    const clickedInsideMenu = navMenu.contains(e.target);
+    const clickedHamburger = hamburger.contains(e.target);
+
+    if(!clickedInsideMenu && !clickedHamburger && navMenu.classList.contains("show")){
+        navMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+
+        const spans = hamburger.querySelectorAll("span");
+        spans[0].style.transform = "rotate(0) translate(0,0)";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "rotate(0) translate(0,0)";
+
+        document.body.classList.remove("no-scroll");
+        if(window.scrollY === 0){
+    mobileLinks.forEach(link => {
+        if(link.getAttribute("href") === "#"){
+            link.classList.remove("active");
+        }
+    });
+}
+    }
+});
+
+    // --- Mobilní menu: klik i scroll ---
+const mobileLinks = navMenu.querySelectorAll("a");
+
+// Kliknutí na odkaz
+mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        // Zavření menu
+        navMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+
+        const spans = hamburger.querySelectorAll("span");
+        spans[0].style.transform = "rotate(0) translate(0,0)";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "rotate(0) translate(0,0)";
+
+        document.body.classList.remove("no-scroll");
+        if(window.scrollY === 0){
+    mobileLinks.forEach(link => {
+        if(link.getAttribute("href") === "#"){
+            link.classList.remove("active");
+        }
+    });
+}
+    });
+});
+
+// Aktivní položka podle scrollu (mobil)
+function updateActiveMenuOnScroll() {
+    if(window.innerWidth > 768) return; // jen mobil
+
+    let currentSectionId = "";
+
+    // pokud jsme úplně nahoře, nic nezvýrazňovat
+    if(window.scrollY < 50) {
+        currentSectionId = "";
+    } else {
+        document.querySelectorAll("section").forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if(rect.top <= window.innerHeight/2 && rect.bottom >= window.innerHeight/2){
+                currentSectionId = sec.id;
+            }
+        });
+
+        // DOMŮ (#home) se nezvýrazní
+        if(currentSectionId === "home") currentSectionId = ""; 
+    }
+
+    mobileLinks.forEach(link => {
+    // nikdy neaktivovat DOMŮ
+    if(link.getAttribute("href") === "#") return;
+
+    link.classList.remove("active");
+    if(link.getAttribute("href") === "#" + currentSectionId){
+        link.classList.add("active");
+    }
+});
+}
+
+window.addEventListener("scroll", updateActiveMenuOnScroll);
+window.addEventListener("resize", updateActiveMenuOnScroll);
+updateActiveMenuOnScroll(); // inicializace
+
+        
+</script>
+
+<!-- Lightbox Studio -->
+<div id="studioLightbox">
+  <span id="studioClose">&times;</span>
+  <button id="studioPrev" class="scroll-btn left">&#10094;</button>
+  <img id="studioLightboxImg" src="" alt="Studio">
+  <button id="studioNext" class="scroll-btn right">&#10095;</button>
+</div>
+
+<!-- Lightbox Gallery -->
+<div id="galleryLightbox">
+  <span id="galleryClose">&times;</span>
+  <button id="galleryPrev" class="scroll-btn left">&#10094;</button>
+  <img id="galleryLightboxImg" src="" alt="Galerie">
+  <button id="galleryNext" class="scroll-btn right">&#10095;</button>
+</div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    if(window.innerWidth > 768) return; // jen mobil
+
+    const studioGallery = document.querySelector("#studio .gallery");
+
+    const leftBtn = document.createElement("button");
+    leftBtn.className = "scroll-btn left";
+    leftBtn.innerHTML = "&#10094;"; // ←
+
+    const rightBtn = document.createElement("button");
+    rightBtn.className = "scroll-btn right";
+    rightBtn.innerHTML = "&#10095;"; // →
+
+    const studioSection = document.getElementById("studio");
+    studioSection.appendChild(leftBtn);
+    studioSection.appendChild(rightBtn);
+
+    const scrollAmount = 260;
+
+    const images = Array.from(studioGallery.querySelectorAll("img"));
+
+function scrollToStudioImage(direction) {
+    const galleryRect = studioGallery.getBoundingClientRect();
+    const galleryCenter = galleryRect.left + galleryRect.width / 2;
+
+    let currentIndex = 0;
+    let minDistance = Infinity;
+
+    images.forEach((img, i) => {
+        const imgRect = img.getBoundingClientRect();
+        const imgCenter = imgRect.left + imgRect.width / 2;
+        const distance = Math.abs(imgCenter - galleryCenter);
+        if (distance < minDistance) {
+            minDistance = distance;
+            currentIndex = i;
+        }
+    });
+
+    let targetIndex = Math.min(Math.max(0, currentIndex + direction), images.length - 1);
+    const target = images[targetIndex];
+    const targetRect = target.getBoundingClientRect();
+
+    const targetScroll =
+        studioGallery.scrollLeft + (targetRect.left - galleryRect.left) + targetRect.width / 2 - galleryRect.width / 2;
+
+    studioGallery.scrollTo({
+        left: targetScroll,
+        behavior: "smooth"
+    });
+}
+
+// --- nahrazení původních listenerů ---
+leftBtn.addEventListener("click", () => scrollToStudioImage(-1));
+rightBtn.addEventListener("click", () => scrollToStudioImage(1));
+
+    const updateArrowStates = () => {
+        if(studioGallery.scrollLeft <= 0){
+            leftBtn.style.display = "none";
+        } else {
+            leftBtn.style.display = "flex";
+        }
+
+        if(studioGallery.scrollLeft + studioGallery.clientWidth >= studioGallery.scrollWidth - 1){
+            rightBtn.style.display = "none";
+        } else {
+            rightBtn.style.display = "flex";
+        }
+    }
+
+    studioGallery.addEventListener("scroll", updateArrowStates);
+    updateArrowStates();
+});
+</script>
+    <script>
+const bannerImg = new Image();
+bannerImg.src = "banner1.png";
+
+bannerImg.decode().then(() => {
+  document.querySelector("header.banner")
+    .classList.add("banner-ready");
+});
+
+      const pricingToggle = document.querySelector(".pricing-toggle");
+      const pricingContent = document.querySelector(".pricing-content");
+      const pricingClose = document.querySelector(".pricing-close");
+
+if(pricingToggle && pricingContent){
+
+pricingToggle.addEventListener("click", () => {
+
+    pricingContent.classList.toggle("open");
+
+    if(pricingContent.classList.contains("open")){
+        pricingToggle.textContent = "Skrýt ceník";
+    } else {
+        pricingToggle.textContent = "Zobrazit ceník";
+    }
+
+});
+
+pricingClose.addEventListener("click", () => {
+
+    pricingContent.classList.remove("open");
+    pricingToggle.textContent = "Zobrazit ceník";
+
+    document.getElementById("pricing").scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
+
+}
+</script>
+</body>
+</html>
+
+
+
+
