@@ -1219,14 +1219,10 @@ nav{
   }
 
   #studio .gallery img {
-    flex: 0 0 auto;
-    width: 260px;
-    height: auto;
-    object-fit: cover;
-
-    backface-visibility: hidden;
-    transform: translateZ(0);
-}
+      flex: 0 0 auto;
+      width: 320px;      /* ← změna (bylo 250px) */
+      height: auto;      /* ← důležité */
+  }
 
   #studio .gallery::-webkit-scrollbar {
       display: none;
@@ -1412,11 +1408,11 @@ Veškeré vybavení je zajištěno ve studiu. Kurz probíhá v mém salonu v Ús
 
 <div class="gallery">
 
-<img src="novestudio1-small.jpeg" alt="Studio">    
-<img src="novestudio2-small.jpeg" alt="Studio">
-<img src="novestudio3-small.jpeg" alt="Studio">
-<img src="novestudio4-small.jpeg" alt="Studio">
-<img src="novestudio5-small.jpeg" alt="Studio">
+<img src="novestudio1.jpeg" alt="Studio">    
+<img src="novestudio2.jpeg" alt="Studio">
+<img src="novestudio3.jpeg" alt="Studio">
+<img src="novestudio4.jpeg" alt="Studio">
+<img src="novestudio5.jpeg" alt="Studio">
 
 </div>
 
@@ -2810,7 +2806,6 @@ pricingClose.addEventListener("click", () => {
 </script>
 </body>
 </html>
-
 
 
 
