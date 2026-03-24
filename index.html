@@ -677,15 +677,16 @@ nav{
 /* --- Studio fotky (grid) --- */
 #studio .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(5, 1fr); /* ← přesně 5 vedle sebe */
+    gap: 20px;
 }
 
 #studio .gallery img {
     width: 100%;
-    height: auto;
-    border-radius: 30px;
+    height: 220px;   /* ← menší výška jako ve scroll verzi */
     object-fit: cover;
+    border-radius: 30px;
+
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;       
